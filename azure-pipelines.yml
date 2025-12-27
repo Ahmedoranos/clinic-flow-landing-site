@@ -1,0 +1,15 @@
+trigger:
+  - master  # Or 'main' depending on your branch name
+
+variables:
+- group: SWA-Secrets  # This links to the secret you just created
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: "/"          # Where your index.html is
+    output_location: "/"       # Since it's a simple HTML site for now
+    azure_static_web_apps_api_token: $(my_swa_token)
