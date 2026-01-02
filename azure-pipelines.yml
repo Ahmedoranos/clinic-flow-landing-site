@@ -1,6 +1,9 @@
 trigger:
   - master  # Or 'main' depending on your branch name
 
+pool:
+  name: 'Default'
+  
 variables:
 - group: New variable group 27-Dec  # This links to the secret you just created
 

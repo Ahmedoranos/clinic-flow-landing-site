@@ -1,0 +1,45 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          # This must match your GitHub Secret name exactly
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_CLINIC_LANDING_KEY }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} 
+          action: "upload"
+          ###### Configuration ######
+          app_location: "/" 
+          api_location: ""  
+          output_location: "build" # Change to "dist" if using Vite/Vue
+          ###### End of Configuration ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Job
+        id: closejob
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_CLINIC_LANDING_KEY }}
+          action: "close"
