@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Flow | Modern Management System</title>
+    <title>Clinic Flow | Professional Practice Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -13,71 +13,131 @@
             --text-dark: #333;
             --text-light: #666;
             --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
         
-        body { background-color: var(--secondary); color: var(--text-dark); line-height: 1.6; transition: all 0.3s ease; }
+        body { background-color: var(--secondary); color: var(--text-dark); line-height: 1.6; scroll-behavior: smooth; }
 
         /* Navigation */
         nav {
-            background: var(--white);
-            padding: 1rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 1rem 5%; display: flex; justify-content: space-between;
+            align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky; top: 0; z-index: 1000;
         }
 
         .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-circle { width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; border: 3px solid #d1e3f0; }
+        .logo-circle { width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; border: 3px solid #d1e3f0; }
 
         .nav-right { display: flex; align-items: center; gap: 20px; }
         
         .lang-switch {
-            background: #e1e8ed; border: none; padding: 8px 15px; border-radius: 20px;
-            cursor: pointer; font-weight: bold; color: var(--primary); display: flex; align-items: center; gap: 8px;
+            background: #e1e8ed; border: none; padding: 8px 18px; border-radius: 20px;
+            cursor: pointer; font-weight: bold; color: var(--primary); display: flex; align-items: center; gap: 8px; transition: 0.3s;
         }
 
-        .btn-download-nav { background: var(--primary); color: white; padding: 8px 20px; border-radius: 5px; text-decoration: none; font-weight: 500; }
+        .btn-download-nav { background: var(--primary); color: white; padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .btn-download-nav:hover { background: #1a2a3a; }
 
-        /* Sections */
-        .hero { padding: 80px 10%; text-align: center; background: linear-gradient(180deg, #ffffff 0%, #f4f8fb 100%); }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; color: var(--text-dark); }
-        .hero p { font-size: 1.2rem; color: var(--text-light); max-width: 800px; margin: 0 auto 40px; }
+        /* --- UPDATED HERO SECTION FOR SPLIT SCREEN --- */
+        .hero-split-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 5% 80px; /* Reduced side padding slightly to fit content */
+            background: radial-gradient(circle at top right, #ffffff 0%, #f4f8fb 100%);
+            gap: 50px;
+            min-height: 85vh; /* Ensure it takes up most of the screen */
+        }
+
+        .hero-text-side {
+            flex: 1;
+            max-width: 600px;
+            text-align: start; /* Smart alignment for LTR/RTL */
+        }
+
+        .hero-video-side {
+            flex: 1;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 25px; color: #1a2a3a; line-height: 1.1; }
+        .hero p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 40px; }
 
         .main-download-card {
             background: var(--primary); color: white; display: inline-flex; align-items: center;
-            padding: 20px 40px; border-radius: 12px; text-decoration: none; transition: transform 0.3s;
-            box-shadow: 0 10px 20px rgba(45, 109, 163, 0.3); gap: 20px;
+            padding: 22px 45px; border-radius: 15px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 15px 35px rgba(45, 109, 163, 0.25); gap: 25px;
         }
-        .main-download-card:hover { transform: translateY(-5px); }
+        .main-download-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(45, 109, 163, 0.4); }
 
-        .features { padding: 60px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .feature-card { background: white; padding: 30px; border-radius: 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .feature-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+        /* Updated Video Container Styles */
+        .video-container { 
+            width: 100%; 
+            background: #000; border-radius: 20px; 
+            overflow: hidden; box-shadow: var(--shadow); position: relative; aspect-ratio: 16/9;
+            border: 8px solid white;
+        }
+        .video-placeholder { 
+            width: 100%; height: 100%; display: flex; align-items: center; 
+            justify-content: center; background: linear-gradient(45deg, #2d6da3, #1a2a3a);
+            color: white; cursor: pointer;
+            flex-direction: column; /* Center text under icon */
+        }
+        .play-btn { font-size: 4rem; opacity: 0.9; transition: 0.3s; margin-bottom: 15px; }
+        .play-btn:hover { transform: scale(1.1); opacity: 1; }
 
-        .security-section { padding: 60px 10%; background: #fff; border-radius: 20px; margin: 0 10%; }
-        .security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .security-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
-        .security-item i { color: #2ecc71; margin-top: 5px; }
+        /* Trust Badges */
+        .trust-badges { display: flex; justify-content: center; gap: 40px; padding: 40px 10%; opacity: 0.6; grayscale: 1; background: var(--secondary); }
+        .trust-badges i { font-size: 1.5rem; }
 
-        .testimonial { background: white; margin: 60px 10%; padding: 40px; border-radius: 15px; display: flex; align-items: center; gap: 30px; border-left: 10px solid var(--primary); }
-        [dir="rtl"] .testimonial { border-left: none; border-right: 10px solid var(--primary); }
+        /* Features */
+        .features { padding: 80px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card { background: white; padding: 40px; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid #edf2f7; transition: 0.3s; }
+        .feature-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .feature-card i { font-size: 3rem; color: var(--primary); margin-bottom: 25px; }
 
-        .platforms { padding: 60px 10%; text-align: center; }
-        .platform-grid { display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
-        .platform-item { background: white; padding: 40px; border-radius: 15px; width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .store-btn { display: block; margin-top: 15px; background: #000; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-size: 0.9rem; }
+        /* Security */
+        .security-section { padding: 80px 10%; background: var(--white); border-radius: 30px; margin: 40px 5%; box-shadow: var(--shadow); }
+        .security-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .security-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
+        .security-item i { color: #2ecc71; background: #eafaf1; padding: 12px; border-radius: 10px; }
 
-        footer { background: #1a2a3a; color: white; padding: 40px 10%; text-align: center; }
-        .footer-links { margin-top: 20px; }
-        .footer-links a { color: #bdc3c7; margin: 0 15px; text-decoration: none; font-size: 0.9rem; }
+        /* Requirements Table */
+        .req-section { padding: 60px 10%; text-align: center; }
+        .req-table { max-width: 600px; margin: 30px auto; background: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); }
+        .req-row { display: flex; justify-content: space-between; padding: 15px 30px; border-bottom: 1px solid #eee; }
+        .req-row:last-child { border-bottom: none; }
+
+        .testimonial { background: #1a2a3a; color: white; margin: 80px 0; padding: 80px 10%; text-align: center; position: relative; }
+        .testimonial i.quote-icon { font-size: 4rem; color: var(--primary); opacity: 0.3; position: absolute; top: 40px; left: 10%; }
+
+        footer { background: #0f172a; color: #94a3b8; padding: 60px 10%; text-align: center; }
+        .footer-links a { color: white; margin: 0 15px; text-decoration: none; font-weight: 500; }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .hero-split-container {
+                flex-direction: column; /* Stack on mobile/tablet */
+                text-align: center;
+                padding-top: 100px;
+                gap: 40px;
+            }
+            .hero-text-side {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero-video-side { width: 100%; }
+        }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.2rem; }
             .security-grid { grid-template-columns: 1fr; }
+            .nav-right .btn-download-nav { display: none; }
         }
     </style>
 </head>
@@ -86,7 +146,7 @@
 <nav>
     <div class="logo-container">
         <div class="logo-circle"><i class="fas fa-plus"></i></div>
-        <h2 style="color: var(--primary); letter-spacing: -1px;">CLINIC<span style="color: #1a2a3a;">FLOW</span></h2>
+        <h2 style="color: var(--primary); letter-spacing: -1px; font-weight: 800;">CLINIC<span style="color: #1a2a3a;">FLOW</span></h2>
     </div>
     <div class="nav-right">
         <button class="lang-switch" onclick="toggleLanguage()">
@@ -97,110 +157,138 @@
     </div>
 </nav>
 
-<section class="hero">
-    <h1 id="heroH1">Streamline Your Practice. Elevate Your Care.</h1>
-    <p id="heroP">Clinic Flow is the all-in-one MAUI-powered desktop and mobile solution designed for the modern healthcare professional. Manage appointments, patient records, and billing with a single, intuitive interface.</p>
-    
-    <a href="#" class="main-download-card">
-        <i class="fas fa-rocket fa-2x"></i>
-        <div style="text-align: left;" id="mainDlContent">
-            <div id="dlTextMain" style="font-weight: bold; font-size: 1.2rem;">Download Clinic Flow for Windows/macOS</div>
-            <div id="dlTextSub" style="font-size: 0.9rem; opacity: 0.9;">Version 2.5.0 | Latest Update: Dec 2025</div>
+<section class="hero hero-split-container">
+    <div class="hero-text-side">
+        <h1 id="heroH1">Streamline Your Practice.<br>Elevate Your Care.</h1>
+        <p id="heroP">Clinic Flow is the all-in-one MAUI-powered desktop and mobile solution designed for the modern healthcare professional.</p>
+        
+        <a href="#download" class="main-download-card">
+            <i class="fas fa-download fa-2x"></i>
+            <div style="text-align: start;" id="mainDlContent"> <div id="dlTextMain" style="font-weight: 700; font-size: 1.3rem;">Get Clinic Flow for Desktop</div>
+                <div id="dlTextSub" style="font-size: 0.9rem; opacity: 0.8;">v2.5.0 | Secure Executable for Windows</div>
+            </div>
+        </a>
+    </div>
+
+    <div class="hero-video-side">
+        <div class="video-container">
+            <div class="video-placeholder" onclick="alert('Video player would launch here')">
+                <i class="fas fa-play-circle play-btn"></i>
+                <h3 id="vidText">Watch 60-Second Overview</h3>
+            </div>
         </div>
-    </a>
+    </div>
 </section>
+
+<div class="trust-badges">
+    <span><i class="fas fa-check-shield"></i> Verified Secure</span>
+    <span><i class="fas fa-lock"></i> SSL Encrypted</span>
+    <span><i class="fas fa-cloud"></i> Azure Powered</span>
+</div>
 
 <section class="features">
     <div class="feature-card">
-        <i class="fas fa-calendar-check"></i>
+        <i class="fas fa-calendar-alt"></i>
         <h3 id="f1T">Smart Scheduler</h3>
-        <p id="f1D">Drag-and-drop appointment booking with automated patient reminders to reduce no-shows by 60%.</p>
+        <p id="f1D">Drag-and-drop booking with automated reminders to reduce no-shows by 60%.</p>
     </div>
     <div class="feature-card">
-        <i class="fas fa-file-medical"></i>
+        <i class="fas fa-user-md"></i>
         <h3 id="f2T">Unified EMR</h3>
-        <p id="f2D">Centralized patient history and digital SOAP notes. Access any patient data in under 3 seconds.</p>
+        <p id="f2D">Centralized patient history and SOAP notes. Access data in under 3 seconds.</p>
     </div>
     <div class="feature-card">
-        <i class="fas fa-file-invoice-dollar"></i>
+        <i class="fas fa-credit-card"></i>
         <h3 id="f3T">Instant Billing</h3>
-        <p id="f3D">Automated invoicing and insurance claim tracking with integrated payment gateways.</p>
+        <p id="f3D">Automated invoicing and insurance tracking with integrated gateways.</p>
     </div>
 </section>
 
 <section class="security-section">
-    <h2 id="secH" style="margin-bottom: 30px; text-align: center;">Built for Security & Compliance</h2>
+    <h2 id="secH" style="margin-bottom: 50px; text-align: center; font-size: 2.2rem;">Enterprise-Grade Security</h2>
     <div class="security-grid">
         <div>
             <div class="security-item">
-                <i class="fas fa-shield-alt fa-lg"></i>
+                <i class="fas fa-shield-halved fa-xl"></i>
                 <div>
                     <strong id="s1T">HIPAA & GDPR Ready</strong>
-                    <p id="s1D" style="color: var(--text-light);">Fully encrypted database and secure data transit protocols.</p>
+                    <p id="s1D" style="color: var(--text-light);">Fully encrypted database and secure transit protocols.</p>
                 </div>
             </div>
             <div class="security-item">
-                <i class="fas fa-fingerprint fa-lg"></i>
+                <i class="fas fa-fingerprint fa-xl"></i>
                 <div>
                     <strong id="s2T">Biometric Login</strong>
-                    <p id="s2D" style="color: var(--text-light);">Secure your records with Windows Hello or TouchID integration.</p>
+                    <p id="s2D" style="color: var(--text-light);">Secure records with Windows Hello or TouchID.</p>
                 </div>
             </div>
         </div>
         <div>
             <div class="security-item">
-                <i class="fas fa-cloud-upload-alt fa-lg"></i>
+                <i class="fas fa-sync fa-xl"></i>
                 <div>
                     <strong id="s3T">Automated Backups</strong>
-                    <p id="s3D" style="color: var(--text-light);">Daily encrypted cloud sync to Azure or AWS infrastructure.</p>
+                    <p id="s3D" style="color: var(--text-light);">Daily encrypted cloud sync to Azure infrastructure.</p>
                 </div>
             </div>
             <div class="security-item">
-                <i class="fas fa-user-lock fa-lg"></i>
+                <i class="fas fa-user-shield fa-xl"></i>
                 <div>
                     <strong id="s4T">Role-Based Access</strong>
-                    <p id="s4D" style="color: var(--text-light);">Control exactly what your staff can see, edit, or delete.</p>
+                    <p id="s4D" style="color: var(--text-light);">Control exactly what staff can see or edit.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="testimonial">
-    <i class="fas fa-quote-left" style="font-size: 3rem; color: #eee;"></i>
-    <div>
-        <p id="testiP" style="font-style: italic; font-size: 1.1rem; margin-bottom: 10px;">
-            "Clinic Flow has completely transformed how we operate. The automated reminders alone have reduced our no-shows significantly. My staff loves how intuitive it is."
-        </p>
-        <strong id="testiAuthor">Dr. Neha Kapoor</strong> <span id="testiRole" style="color: var(--text-light);">| General Physician</span>
+<section class="req-section">
+    <h3 id="reqH">System Requirements</h3>
+    <div class="req-table">
+        <div class="req-row"><strong>OS</strong> <span>Windows 10+ / macOS Monterey+</span></div>
+        <div class="req-row"><strong>RAM</strong> <span>4GB Minimum (8GB Recommended)</span></div>
+        <div class="req-row"><strong>Storage</strong> <span>500MB Free Space</span></div>
     </div>
+</section>
+
+<div class="testimonial">
+    <i class="fas fa-quote-left quote-icon"></i>
+    <p id="testiP" style="font-size: 1.5rem; max-width: 800px; margin: 0 auto 30px; font-weight: 300;">
+        "Clinic Flow transformed how we operate. The reminders reduced no-shows significantly."
+    </p>
+    <strong id="testiAuthor" style="color: var(--primary); font-size: 1.2rem;">Dr. Neha Kapoor</strong>
 </div>
 
-<section class="platforms" id="download">
-    <h2 id="platH">Ready to get started?</h2>
-    <div class="platform-grid">
-        <div class="platform-item">
-            <i class="fas fa-desktop" style="font-size: 3rem; color: var(--primary);"></i>
-            <h3 id="p1T">Desktop Client</h3>
-            <p id="p1D" style="margin: 10px 0;">Best for receptionists and administrators.</p>
-            <a href="#" class="store-btn" style="background: var(--primary);"><i class="fas fa-download"></i> Download .exe / .dmg</a>
+<section class="platforms" id="download" style="padding: 100px 10%; text-align: center;">
+    <h2 id="platH" style="font-size: 2.5rem; margin-bottom: 40px;">Ready to Transform Your Clinic?</h2>
+    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+        <div style="background: white; padding: 40px; border-radius: 20px; width: 350px; box-shadow: var(--shadow);">
+            <i class="fas fa-desktop" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+            <h3 id="p1T">Desktop App</h3>
+            <p id="p1D" style="margin: 15px 0; color: var(--text-light);">The full power of Clinic Flow for your workstation.</p>
+            <a href="#" class="btn-download-nav" style="display: block; padding: 15px;">Download .exe for Windows</a>
         </div>
-        <div class="platform-item">
-            <i class="fas fa-mobile-alt" style="font-size: 3rem; color: var(--primary);"></i>
-            <h3 id="p2T">Mobile Companion</h3>
-            <p id="p2D" style="margin: 10px 0;">Keep your clinic in your pocket on the go.</p>
-            <a href="#" class="store-btn"><i class="fab fa-apple"></i> App Store</a>
-            <a href="#" class="store-btn"><i class="fab fa-google-play"></i> Google Play</a>
+        <div style="background: white; padding: 40px; border-radius: 20px; width: 350px; box-shadow: var(--shadow);">
+            <i class="fas fa-mobile-screen-button" style="font-size: 3rem; color: var(--primary); margin-bottom: 20px;"></i>
+            <h3 id="p2T">Mobile App</h3>
+            <p id="p2D" style="margin: 15px 0; color: var(--text-light);">Access patient data on the go via iOS or Android.</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="#" style="color: black; font-size: 1.5rem;"><i class="fab fa-apple"></i></a>
+                <a href="#" style="color: black; font-size: 1.5rem;"><i class="fab fa-google-play"></i></a>
+            </div>
         </div>
     </div>
 </section>
 
 <footer>
-    <p id="foot">Copyright © 2025 Clinic Flow Management Systems</p>
+    <div style="margin-bottom: 30px;">
+        <h3 style="color: white; margin-bottom: 10px;">CLINIC FLOW</h3>
+        <p id="foot">© 2026 Clinic Flow Management Systems. All rights reserved.</p>
+    </div>
     <div class="footer-links">
         <a href="#" id="fL1">Privacy Policy</a>
         <a href="#" id="fL2">Terms of Service</a>
-        <a href="#" id="fL3">Contact Support</a>
+        <a href="#" id="fL3">Support</a>
     </div>
 </footer>
 
@@ -208,46 +296,50 @@
     const content = {
         en: {
             dir: "ltr", langBtn: "العربية", navBtn: "Download Now",
-            heroH1: "Streamline Your Practice. Elevate Your Care.",
-            heroP: "Clinic Flow is the all-in-one MAUI-powered desktop and mobile solution designed for the modern healthcare professional. Manage appointments, patient records, and billing with a single, intuitive interface.",
-            dlTextMain: "Download Clinic Flow for Windows/macOS",
-            dlTextSub: "Version 2.5.0 | Latest Update: Dec 2025",
-            f1T: "Smart Scheduler", f1D: "Drag-and-drop appointment booking with automated patient reminders to reduce no-shows by 60%.",
-            f2T: "Unified EMR", f2D: "Centralized patient history and digital SOAP notes. Access any patient data in under 3 seconds.",
-            f3T: "Instant Billing", f3D: "Automated invoicing and insurance claim tracking with integrated payment gateways.",
-            secH: "Built for Security & Compliance",
-            s1T: "HIPAA & GDPR Ready", s1D: "Fully encrypted database and secure data transit protocols.",
-            s2T: "Biometric Login", s2D: "Secure your records with Windows Hello or TouchID integration.",
-            s3T: "Automated Backups", s3D: "Daily encrypted cloud sync to Azure or AWS infrastructure.",
-            s4T: "Role-Based Access", s4D: "Control exactly what your staff can see, edit, or delete.",
-            testiP: '"Clinic Flow has completely transformed how we operate. The automated reminders alone have reduced our no-shows significantly. My staff loves how intuitive it is."',
-            testiAuthor: "Dr. Neha Kapoor", testiRole: "| General Physician",
-            platH: "Ready to get started?",
-            p1T: "Desktop Client", p1D: "Best for receptionists and administrators.",
-            p2T: "Mobile Companion", p2D: "Keep your clinic in your pocket on the go.",
-            foot: "Copyright © 2025 Clinic Flow Management Systems",
-            fL1: "Privacy Policy", fL2: "Terms of Service", fL3: "Contact Support"
+            heroH1: "Streamline Your Practice.\nElevate Your Care.",
+            heroP: "Clinic Flow is the all-in-one MAUI-powered desktop and mobile solution designed for the modern healthcare professional.",
+            dlTextMain: "Get Clinic Flow for Desktop",
+            dlTextSub: "v2.5.0 | Secure Executable for Windows",
+            vidText: "Watch 60-Second Overview",
+            f1T: "Smart Scheduler", f1D: "Drag-and-drop booking with automated reminders to reduce no-shows by 60%.",
+            f2T: "Unified EMR", f2D: "Centralized patient history and SOAP notes. Access data in under 3 seconds.",
+            f3T: "Instant Billing", f3D: "Automated invoicing and insurance tracking with integrated gateways.",
+            secH: "Enterprise-Grade Security",
+            s1T: "HIPAA & GDPR Ready", s1D: "Fully encrypted database and secure transit protocols.",
+            s2T: "Biometric Login", s2D: "Secure records with Windows Hello or TouchID.",
+            s3T: "Automated Backups", s3D: "Daily encrypted cloud sync to Azure infrastructure.",
+            s4T: "Role-Based Access", s4D: "Control exactly what staff can see or edit.",
+            reqH: "System Requirements",
+            testiP: '"Clinic Flow transformed how we operate. The reminders reduced no-shows significantly."',
+            testiAuthor: "Dr. Neha Kapoor", 
+            platH: "Ready to Transform Your Clinic?",
+            p1T: "Desktop App", p1D: "The full power of Clinic Flow for your workstation.",
+            p2T: "Mobile App", p2D: "Access patient data on the go via iOS or Android.",
+            foot: "© 2026 Clinic Flow Management Systems. All rights reserved.",
+            fL1: "Privacy Policy", fL2: "Terms of Service", fL3: "Support"
         },
         ar: {
             dir: "rtl", langBtn: "English", navBtn: "تحميل الآن",
-            heroH1: "نظم عيادتك. ارتقِ برعايتك.",
-            heroP: "كلينيك فلو هو الحل الشامل المدعوم بتقنية MAUI لسطح المكتب والهاتف المحمول المصمم لمتخصصي الرعاية الصحية المعاصرين. أدر المواعيد وسجلات المرضى والفواتير بواجهة واحدة سهلة الاستخدام.",
-            dlTextMain: "تحميل كلينيك فلو لأنظمة ويندوز وماك",
-            dlTextSub: "الإصدار 2.5.0 | آخر تحديث: ديسمبر 2025",
-            f1T: "المجدول الذكي", f1D: "حجز المواعيد بالسحب والإفلات مع تنبيهات تلقائية للمرضى لتقليل عدم الحضور بنسبة 60٪.",
-            f2T: "السجل الطبي الموحد", f2D: "سجل تاريخ المرضى المركزي وملاحظات SOAP الرقمية. الوصول إلى بيانات المريض في أقل من 3 ثوانٍ.",
-            f3T: "فواتير فورية", f3D: "إصدار الفواتير تلقائياً وتتبع مطالبات التأمين مع بوابات دفع متكاملة.",
-            secH: "بنيت للأمان والامتثال",
-            s1T: "جاهز لـ HIPAA و GDPR", s1D: "قاعدة بيانات مشفرة بالكامل وبروتوكولات نقل بيانات آمنة.",
-            s2T: "تسجيل الدخول البيومتري", s2D: "قم بتأمين سجلاتك باستخدام بصمة الوجه أو الأصبع.",
-            s3T: "نسخ احتياطي تلقائي", s3D: "مزامنة سحابية مشفرة يومية لبنية Azure أو AWS التحتية.",
-            s4T: "وصول محدد الأدوار", s4D: "تحكم بدقة فيما يمكن لموظفيك رؤيته أو تعديله أو حذفه.",
-            testiP: '"لقد غير كلينيك فلو طريقة عملنا تماماً. لقد قللت التنبيهات التلقائية وحدها من حالات عدم الحضور بشكل كبير. طاقمي يحب سهولة استخدامه."',
-            testiAuthor: "د. نيها كابور", testiRole: "| طبيب عام",
-            platH: "هل أنت مستعد للبدء؟",
-            p1T: "نسخة سطح المكتب", p1D: "الأفضل لموظفي الاستقبال والإداريين.",
-            p2T: "تطبيق الهاتف", p2D: "ابقَ عيادتك في جيبك أينما كنت.",
-            foot: "حقوق الطبع والنشر © 2025 أنظمة إدارة كلينيك فلو",
+            heroH1: "نظم عيادتك.\nارتقِ برعايتك.",
+            heroP: "كلينيك فلو هو الحل الشامل المدعوم بتقنية MAUI لسطح المكتب والهاتف المحمول المصمم لمتخصصي الرعاية الصحية.",
+            dlTextMain: "احصل على كلينيك فلو للكمبيوتر",
+            dlTextSub: "الإصدار 2.5.0 | ملف آمن لويندوز",
+            vidText: "شاهد العرض التوضيحي (60 ثانية)",
+            f1T: "المجدول الذكي", f1D: "حجز المواعيد بالسحب والإفلات مع تنبيهات تلقائية لتقليل الغياب بنسبة 60٪.",
+            f2T: "السجل الطبي الموحد", f2D: "سجل تاريخ المرضى وملاحظات رقمية. الوصول للبيانات في أقل من 3 ثوانٍ.",
+            f3T: "فواتير فورية", f3D: "إصدار الفواتير تلقائياً وتتبع التأمين مع بوابات دفع متكاملة.",
+            secH: "أمان بمستوى المؤسسات",
+            s1T: "جاهز لـ HIPAA و GDPR", s1D: "قاعدة بيانات مشفرة بالكامل وبروتوكولات نقل آمنة.",
+            s2T: "تسجيل الدخول البيومتري", s2D: "تأمين السجلات باستخدام بصمة الوجه أو الأصبع.",
+            s3T: "نسخ احتياطي تلقائي", s3D: "مزامنة سحابية مشفرة يومية لبنية Azure التحتية.",
+            s4T: "وصول محدد الأدوار", s4D: "تحكم بدقة فيما يمكن للموظفين رؤيته أو تعديله.",
+            reqH: "متطلبات النظام",
+            testiP: '"لقد غير كلينيك فلو طريقة عملنا تماماً. التنبيهات قللت حالات الغياب بشكل كبير."',
+            testiAuthor: "د. نيها كابور",
+            platH: "هل أنت مستعد لتطوير عيادتك؟",
+            p1T: "تطبيق الكمبيوتر", p1D: "القوة الكاملة لكلينيك فلو لجهاز الكمبيوتر الخاص بك.",
+            p2T: "تطبيق الهاتف", p2D: "الوصول لبيانات المرضى من الهاتف (iOS/Android).",
+            foot: "© 2026 أنظمة إدارة كلينيك فلو. جميع الحقوق محفوظة.",
             fL1: "سياسة الخصوصية", fL2: "شروط الخدمة", fL3: "الدعم الفني"
         }
     };
@@ -257,7 +349,6 @@
     function toggleLanguage() {
         currentLang = currentLang === 'en' ? 'ar' : 'en';
         const d = content[currentLang];
-        
         document.documentElement.dir = d.dir;
         document.getElementById('langBtnText').innerText = d.langBtn;
         document.getElementById('navBtn').innerText = d.navBtn;
@@ -265,6 +356,7 @@
         document.getElementById('heroP').innerText = d.heroP;
         document.getElementById('dlTextMain').innerText = d.dlTextMain;
         document.getElementById('dlTextSub').innerText = d.dlTextSub;
+        document.getElementById('vidText').innerText = d.vidText;
         document.getElementById('f1T').innerText = d.f1T; document.getElementById('f1D').innerText = d.f1D;
         document.getElementById('f2T').innerText = d.f2T; document.getElementById('f2D').innerText = d.f2D;
         document.getElementById('f3T').innerText = d.f3T; document.getElementById('f3D').innerText = d.f3D;
@@ -273,9 +365,9 @@
         document.getElementById('s2T').innerText = d.s2T; document.getElementById('s2D').innerText = d.s2D;
         document.getElementById('s3T').innerText = d.s3T; document.getElementById('s3D').innerText = d.s3D;
         document.getElementById('s4T').innerText = d.s4T; document.getElementById('s4D').innerText = d.s4D;
+        document.getElementById('reqH').innerText = d.reqH;
         document.getElementById('testiP').innerText = d.testiP;
         document.getElementById('testiAuthor').innerText = d.testiAuthor;
-        document.getElementById('testiRole').innerText = d.testiRole;
         document.getElementById('platH').innerText = d.platH;
         document.getElementById('p1T').innerText = d.p1T; document.getElementById('p1D').innerText = d.p1D;
         document.getElementById('p2T').innerText = d.p2T; document.getElementById('p2D').innerText = d.p2D;
@@ -283,11 +375,10 @@
         document.getElementById('fL1').innerText = d.fL1;
         document.getElementById('fL2').innerText = d.fL2;
         document.getElementById('fL3').innerText = d.fL3;
-
-        // Manual layout fix for download content text alignment
+        
+        // Ensure the text alignment of the main download button flips correctly
         document.getElementById('mainDlContent').style.textAlign = (currentLang === 'ar') ? 'right' : 'left';
     }
 </script>
-
 </body>
 </html>
