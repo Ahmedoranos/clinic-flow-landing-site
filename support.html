@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | Clinic Flow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo-container">
+            <div class="logo-circle"><i class="fas fa-plus"></i></div>
+            <h2 style="color: var(--primary); letter-spacing: -1px; font-weight: 800;">CLINIC<span
+                    style="color: #1a2a3a;">FLOW</span></h2>
+        </a>
+        <div class="nav-right">
+            <button class="lang-switch" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i>
+                <span id="langBtnText" class="arabic-text">العربية</span>
+            </button>
+            <a href="https://pub-150f0bf4dea2424f864022547d985e88.r2.dev/clinic-flow.zip" class="btn-download-nav"
+                id="navBtn">Download Now</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <h1 id="suppH1">Support Center</h1>
+        <p id="suppIntro">How can we help you? Fill out the form below or contact us directly.</p>
+
+        <form id="contactForm" style="margin-top: 30px;">
+            <div class="form-group">
+                <label id="suppNameLabel" for="name" class="form-label">Full Name</label>
+                <input type="text" id="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label id="suppEmailLabel" for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label id="suppMsgLabel" for="message" class="form-label">Message</label>
+                <textarea id="message" class="form-textarea" required></textarea>
+            </div>
+            <button type="submit" id="suppBtn" class="btn-submit">Send Message</button>
+        </form>
+    </div>
+
+    <footer>
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: white; margin-bottom: 10px;">CLINIC FLOW</h3>
+            <p id="foot">© 2026 Clinic Flow Management Systems. All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <a href="privacy.html" id="fL1">Privacy Policy</a>
+            <a href="terms.html" id="fL2">Terms of Service</a>
+            <a href="support.html" id="fL3">Support</a>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
