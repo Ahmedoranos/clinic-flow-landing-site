@@ -113,18 +113,15 @@
             align-items: center;
             justify-content: space-between;
             padding: 60px 5% 80px;
-            /* Reduced side padding slightly to fit content */
             background: radial-gradient(circle at top right, #ffffff 0%, #f4f8fb 100%);
             gap: 50px;
             min-height: 85vh;
-            /* Ensure it takes up most of the screen */
         }
 
         .hero-text-side {
             flex: 1;
             max-width: 600px;
             text-align: start;
-            /* Smart alignment for LTR/RTL */
         }
 
         .hero-video-side {
@@ -133,17 +130,19 @@
             max-width: 700px;
         }
 
+        /* Modified H1 size slightly to accommodate the longer text */
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 25px;
             color: #1a2a3a;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-light);
             margin-bottom: 40px;
+            opacity: 0.9;
         }
 
         .main-download-card {
@@ -176,62 +175,44 @@
             border: 8px solid white;
         }
 
-        .video-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #2d6da3, #1a2a3a);
-            color: white;
-            cursor: pointer;
-            flex-direction: column;
-            /* Center text under icon */
-        }
-
-        .play-btn {
-            font-size: 4rem;
-            opacity: 0.9;
-            transition: 0.3s;
-            margin-bottom: 15px;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-            opacity: 1;
-        }
-
         /* Trust Badges */
         .trust-badges {
             display: flex;
             justify-content: center;
             gap: 40px;
             padding: 40px 10%;
-            opacity: 0.6;
-            grayscale: 1;
+            opacity: 0.7;
             background: var(--secondary);
+            flex-wrap: wrap;
         }
 
         .trust-badges i {
-            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 5px;
+            margin-left: 5px;
         }
 
-        /* Features */
+        /* Features - Updated for 4 Pillars */
         .features {
-            padding: 80px 10%;
+            padding: 80px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Optimized for 4 items */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .feature-card {
             background: white;
-            padding: 40px;
+            padding: 35px;
             border-radius: 15px;
-            text-align: center;
+            text-align: start;
+            /* Aligned start for better reading of longer text */
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
             border: 1px solid #edf2f7;
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .feature-card:hover {
@@ -240,9 +221,17 @@
         }
 
         .feature-card i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            background: #f0f7fc;
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
         /* Security */
@@ -337,7 +326,6 @@
         @media (max-width: 992px) {
             .hero-split-container {
                 flex-direction: column;
-                /* Stack on mobile/tablet */
                 text-align: center;
                 padding-top: 100px;
                 gap: 40px;
@@ -349,17 +337,18 @@
             }
 
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
 
-            .hero-video-side {
-                width: 100%;
+            .feature-card {
+                align-items: center;
+                text-align: center;
             }
         }
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
 
             .security-grid {
@@ -392,16 +381,17 @@
 
     <section class="hero hero-split-container">
         <div class="hero-text-side">
-            <h1 id="heroH1">Streamline Your Practice.<br>Elevate Your Care.</h1>
-            <p id="heroP">Clinic Flow is the all-in-one MAUI-powered desktop and mobile solution designed for the modern
-                healthcare professional.</p>
+            <h1 id="heroH1">Transform Your Clinic Into a Smart Ecosystem: Stop Revenue Leaks, Double Patient Attendance,
+                and Control Every Detail.</h1>
+            <p id="heroP">More than just management software—it’s your technical partner that plugs financial gaps and
+                leverages the power of WhatsApp to build lasting patient loyalty through real-time updates and smart
+                follow-ups.</p>
 
             <a href="#download" class="main-download-card">
                 <i class="fas fa-download fa-2x"></i>
                 <div style="text-align: start;" id="mainDlContent">
-                    <div id="dlTextMain" style="font-weight: 700; font-size: 1.3rem;">Get Clinic Flow for Desktop</div>
-                    <div id="dlTextSub" style="font-size: 0.9rem; opacity: 0.8;">v2.5.0 | Secure Executable for Windows
-                    </div>
+                    <div id="dlTextMain" style="font-weight: 700; font-size: 1.3rem;">Revolutionize Your Clinic</div>
+                    <div id="dlTextSub" style="font-size: 0.9rem; opacity: 0.8;">Download v2.5.0 for Windows</div>
                 </div>
             </a>
         </div>
@@ -417,26 +407,35 @@
     </section>
 
     <div class="trust-badges">
-        <span><i class="fas fa-check-shield"></i> Verified Secure</span>
-        <span><i class="fas fa-lock"></i> SSL Encrypted</span>
-        <span><i class="fas fa-cloud"></i> Azure Powered</span>
+        <span><i class="fas fa-check-shield"></i> Secure Data</span>
+        <span><i class="fab fa-whatsapp"></i> WhatsApp API</span>
+        <span><i class="fas fa-chart-line"></i> Analytics Ready</span>
     </div>
 
     <section class="features">
         <div class="feature-card">
-            <i class="fas fa-calendar-alt"></i>
-            <h3 id="f1T">Smart Scheduler</h3>
-            <p id="f1D">Drag-and-drop booking with automated reminders to reduce no-shows by 60%.</p>
+            <i class="fas fa-file-invoice-dollar"></i>
+            <h3 id="f1T">Financial Security</h3>
+            <p id="f1D">Goodbye to Revenue Leaks: Discover where your clinic is losing money and regain control over
+                every cent through a precise financial system.</p>
         </div>
         <div class="feature-card">
-            <i class="fas fa-user-md"></i>
-            <h3 id="f2T">Unified EMR</h3>
-            <p id="f2D">Centralized patient history and SOAP notes. Access data in under 3 seconds.</p>
+            <i class="fab fa-whatsapp"></i>
+            <h3 id="f2T">Attendance Automation</h3>
+            <p id="f2D">Smart Follow-up, Full Attendance: Send automated WhatsApp reminders to slash no-show rates and
+                ensure patients arrive on time.</p>
         </div>
         <div class="feature-card">
-            <i class="fas fa-credit-card"></i>
-            <h3 id="f3T">Instant Billing</h3>
-            <p id="f3D">Automated invoicing and insurance tracking with integrated gateways.</p>
+            <i class="fas fa-heart"></i>
+            <h3 id="f3T">Patient Satisfaction</h3>
+            <p id="f3D">Exceptional Patient Experience: Real-time WhatsApp queue updates mean no more waiting room
+                stress—care starts before they enter.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-chart-pie"></i>
+            <h3 id="f4T">Total Leadership</h3>
+            <p id="f4D">Data that Drives Growth: Make decisions based on real numbers with comprehensive reports that
+                give you the vision to scale.</p>
         </div>
     </section>
 
@@ -540,15 +539,26 @@
         const content = {
             en: {
                 dir: "ltr", langBtn: "العربية", navBtn: "Download Now",
-                heroH1: "Streamline Your Practice.\nElevate Your Care.",
-                heroP: "Clinic Flow is the all-in-one MAUI-powered desktop and mobile solution designed for the modern healthcare professional.",
-                dlTextMain: "Get Clinic Flow for Desktop",
-                dlTextSub: "v2.5.0 | Secure Executable for Windows",
-                vidText: "Watch 60-Second Overview",
+                // Updated Long-Form Hero Text
+                heroH1: "Transform Your Clinic Into a Smart Ecosystem: Stop Revenue Leaks, Double Patient Attendance, and Control Every Detail with One Click.",
+                heroP: "More than just management software—it’s your technical partner that plugs financial gaps and leverages the power of WhatsApp to build lasting patient loyalty through real-time updates and smart follow-ups, all backed by analytical reports that put the future of your clinic in your hands.",
+                dlTextMain: "Revolutionize Your Clinic Now",
+                dlTextSub: "Download v2.5.0 for Windows",
                 videoSrc: "assets/videos/second-english.mp4",
-                f1T: "Smart Scheduler", f1D: "Drag-and-drop booking with automated reminders to reduce no-shows by 60%.",
-                f2T: "Unified EMR", f2D: "Centralized patient history and SOAP notes. Access data in under 3 seconds.",
-                f3T: "Instant Billing", f3D: "Automated invoicing and insurance tracking with integrated gateways.",
+
+                // Updated 4 Pillars
+                f1T: "Financial Security",
+                f1D: "Goodbye to Revenue Leaks: Discover where your clinic is losing money and regain control over every cent through a precise financial system that closes collection gaps permanently.",
+
+                f2T: "Attendance Automation",
+                f2D: "Smart Follow-up, Full Attendance: Send automated WhatsApp reminders to slash no-show rates and ensure patients arrive for their consultations and follow-ups with pinpoint accuracy.",
+
+                f3T: "Patient Satisfaction",
+                f3D: "Exceptional Patient Experience: Make your patients feel valued with real-time WhatsApp queue updates; no more waiting room stress—just care that begins before they even enter your office.",
+
+                f4T: "Total Leadership",
+                f4D: "Data that Drives Growth: Make decisions based on real numbers; we provide a comprehensive dashboard and analytical reports that give you the full vision to scale your clinic.",
+
                 secH: "Enterprise-Grade Security",
                 s1T: "HIPAA & GDPR Ready", s1D: "Fully encrypted database and secure transit protocols.",
                 s2T: "Biometric Login", s2D: "Secure records with Windows Hello or TouchID.",
@@ -565,15 +575,26 @@
             },
             ar: {
                 dir: "rtl", langBtn: "English", navBtn: "تحميل الآن",
-                heroH1: "نظم عيادتك.\nارتقِ برعايتك.",
-                heroP: "كلينيك فلو هو الحل الشامل المدعوم بتقنية MAUI لسطح المكتب والهاتف المحمول المصمم لمتخصصي الرعاية الصحية.",
-                dlTextMain: "احصل على كلينيك فلو للكمبيوتر",
-                dlTextSub: "الإصدار 2.5.0 | ملف آمن لويندوز",
-                vidText: "شاهد العرض التوضيحي (60 ثانية)",
+                // Updated Long-Form Hero Text (Arabic)
+                heroH1: "حوّل عيادتك إلى منظومة ذكية: أوقف هدر الأرباح، ضاعف التزام المرضى، وسيطر على كل تفصيلة بضغطة زر.",
+                heroP: "ليس مجرد برنامج إدارة، بل شريكك التقني الذي يسد ثغرات التحصيل المالي، ويستخدم قوة 'واتساب' لبناء علاقة وطيدة مع مرضاك عبر التحديثات الفورية والمتابعة الذكية، مدعوماً بتقارير تحليلية تضع مستقبل عيادتك بين يديك.",
+                dlTextMain: "ابدأ ثورة التطوير في عيادتك الآن",
+                dlTextSub: "تحميل الإصدار 2.5.0",
                 videoSrc: "assets/videos/my-vid.mp4",
-                f1T: "المجدول الذكي", f1D: "حجز المواعيد بالسحب والإفلات مع تنبيهات تلقائية لتقليل الغياب بنسبة 60٪.",
-                f2T: "السجل الطبي الموحد", f2D: "سجل تاريخ المرضى وملاحظات رقمية. الوصول للبيانات في أقل من 3 ثوانٍ.",
-                f3T: "فواتير فورية", f3D: "إصدار الفواتير تلقائياً وتتبع التأمين مع بوابات دفع متكاملة.",
+
+                // Updated 4 Pillars (Arabic)
+                f1T: "وداعاً لتسريب الأرباح",
+                f1D: "اكتشف مواطن الهدر المالي في عيادتك واستعد السيطرة على كل قرش عبر نظام مالي دقيق يغلق ثغرات التحصيل تماماً.",
+
+                f2T: "متابعة ذكية.. حضور كامل",
+                f2D: "أرسل رسائل تذكير تلقائية عبر الواتساب لتقليل نسبة الغياب وضمان حضور المرضى في مواعيد الاستشارة والمتابعة بدقة متناهية.",
+
+                f3T: "تجربة مريض استثنائية",
+                f3D: "اجعل مرضاك يشعرون بالاهتمام عبر تحديثات حية لقائمة الانتظار عبر الواتساب؛ لا مزيد من التوتر في غرف الانتظار، بل رعاية تبدأ قبل دخول العيادة.",
+
+                f4T: "تقارير تصنع الفارق",
+                f4D: "اتخذ قراراتك بناءً على أرقام حقيقية؛ نوفر لك لوحة تحكم شاملة وتقارير تحليلية تمنحك الرؤية الكاملة لتطوير عيادتك وزيادة كفاءتها.",
+
                 secH: "أمان بمستوى المؤسسات",
                 s1T: "جاهز لـ HIPAA و GDPR", s1D: "قاعدة بيانات مشفرة بالكامل وبروتوكولات نقل آمنة.",
                 s2T: "تسجيل الدخول البيومتري", s2D: "تأمين السجلات باستخدام بصمة الوجه أو الأصبع.",
@@ -600,7 +621,6 @@
 
             const langBtnText = document.getElementById('langBtnText');
             langBtnText.innerText = d.langBtn;
-            // Apply Tajawal font if the text is Arabic
             if (d.langBtn === "العربية") {
                 langBtnText.classList.add('arabic-text');
             } else {
@@ -612,9 +632,13 @@
             document.getElementById('heroP').innerText = d.heroP;
             document.getElementById('dlTextMain').innerText = d.dlTextMain;
             document.getElementById('dlTextSub').innerText = d.dlTextSub;
+
+            // Updating the 4 Features
             document.getElementById('f1T').innerText = d.f1T; document.getElementById('f1D').innerText = d.f1D;
             document.getElementById('f2T').innerText = d.f2T; document.getElementById('f2D').innerText = d.f2D;
             document.getElementById('f3T').innerText = d.f3T; document.getElementById('f3D').innerText = d.f3D;
+            document.getElementById('f4T').innerText = d.f4T; document.getElementById('f4D').innerText = d.f4D;
+
             document.getElementById('secH').innerText = d.secH;
             document.getElementById('s1T').innerText = d.s1T; document.getElementById('s1D').innerText = d.s1D;
             document.getElementById('s2T').innerText = d.s2T; document.getElementById('s2D').innerText = d.s2D;
@@ -631,12 +655,10 @@
             document.getElementById('fL2').innerText = d.fL2;
             document.getElementById('fL3').innerText = d.fL3;
 
-            // Ensure the text alignment of the main download button flips correctly
             document.getElementById('mainDlContent').style.textAlign = (currentLang === 'ar') ? 'right' : 'left';
 
             // Switch Video
             const video = document.getElementById('heroVideo');
-            console.log('Switching video to:', d.videoSrc);
             video.src = d.videoSrc;
             video.load();
             video.play().catch(e => console.error("Video play failed:", e));
