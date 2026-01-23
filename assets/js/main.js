@@ -45,7 +45,12 @@ const content = {
         suppName: "Full Name",
         suppEmail: "Email Address",
         suppMsg: "Message",
-        suppBtn: "Send Message"
+        suppBtn: "Send Message",
+
+        // Contact
+        contactHeader: "Contact Us Directly",
+        phoneLabel: "Call Us",
+        waLabel: "Chat on WhatsApp"
     },
     ar: {
         dir: "rtl", langBtn: "English", navBtn: "تحميل الآن",
@@ -93,7 +98,12 @@ const content = {
         suppName: "الاسم الكامل",
         suppEmail: "البريد الإلكتروني",
         suppMsg: "الرسالة",
-        suppBtn: "إرسال الرسالة"
+        suppBtn: "إرسال الرسالة",
+
+        // Contact
+        contactHeader: "تواصل معنا مباشرة",
+        phoneLabel: "اتصل بنا",
+        waLabel: "دردش عبر واتساب"
     }
 };
 
@@ -116,15 +126,15 @@ function updateContent() {
     }
 
     const navBtn = document.getElementById('navBtn');
-    if(navBtn) navBtn.innerText = d.navBtn;
+    if (navBtn) navBtn.innerText = d.navBtn;
 
     const foot = document.getElementById('foot');
-    if(foot) foot.innerText = d.foot;
+    if (foot) foot.innerText = d.foot;
 
     const fL1 = document.getElementById('fL1'), fL2 = document.getElementById('fL2'), fL3 = document.getElementById('fL3');
-    if(fL1) fL1.innerText = d.fL1;
-    if(fL2) fL2.innerText = d.fL2;
-    if(fL3) fL3.innerText = d.fL3;
+    if (fL1) fL1.innerText = d.fL1;
+    if (fL2) fL2.innerText = d.fL2;
+    if (fL3) fL3.innerText = d.fL3;
 
     // Index Page Elements (Check if exist to avoid errors on other pages)
     if (document.getElementById('heroH1')) {
@@ -146,17 +156,17 @@ function updateContent() {
         document.getElementById('platH').innerText = d.platH;
         document.getElementById('p1T').innerText = d.p1T; document.getElementById('p1D').innerText = d.p1D;
         document.getElementById('mainDlContent').style.textAlign = (currentLang === 'ar') ? 'right' : 'left';
-        
+
         // Video Switching
         const video = document.getElementById('heroVideo');
         if (video) {
-             // Only switch if source is different to avoid reloading if already set correctly on load
+            // Only switch if source is different to avoid reloading if already set correctly on load
             const currentSrc = video.getAttribute('src');
             // Check if we need to update source (simple check)
             if (!currentSrc.endsWith(d.videoSrc.split('/').pop())) {
-                 video.src = d.videoSrc;
-                 video.load();
-                 video.play().catch(e => console.error("Video play failed:", e));
+                video.src = d.videoSrc;
+                video.load();
+                video.play().catch(e => console.error("Video play failed:", e));
             }
         }
     }
@@ -189,8 +199,19 @@ function updateContent() {
         document.getElementById('suppEmailLabel').innerText = d.suppEmail;
         document.getElementById('suppMsgLabel').innerText = d.suppMsg;
         document.getElementById('suppBtn').innerText = d.suppBtn;
-        
+
         document.getElementById('contactForm').style.textAlign = (currentLang === 'ar') ? 'right' : 'left';
+
+        // Update Contact Cards textual content if they exist
+        if (document.getElementById('contactHeader')) document.getElementById('contactHeader').innerText = d.contactHeader;
+        if (document.getElementById('phoneLabel')) document.getElementById('phoneLabel').innerText = d.phoneLabel;
+        if (document.getElementById('waLabel')) document.getElementById('waLabel').innerText = d.waLabel;
+    }
+
+    // Floating WA Tooltip (title attribute)
+    const floatWa = document.querySelector('.floating-wa');
+    if (floatWa) {
+        floatWa.title = d.waLabel;
     }
 }
 

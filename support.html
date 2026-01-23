@@ -35,7 +35,21 @@
         <h1 id="suppH1">Support Center</h1>
         <p id="suppIntro">How can we help you? Fill out the form below or contact us directly.</p>
 
-        <form id="contactForm" style="margin-top: 30px;">
+        <div class="contact-methods">
+            <a href="tel:+201017907373" class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <strong id="phoneLabel">Call Us</strong>
+                <span dir="ltr">+20 101 790 7373</span>
+            </a>
+            <a href="https://wa.me/201017907373" target="_blank" class="contact-card wa-card">
+                <i class="fab fa-whatsapp"></i>
+                <strong id="waLabel">Chat on WhatsApp</strong>
+                <span dir="ltr">+20 101 790 7373</span>
+            </a>
+        </div>
+
+        <h2 id="contactHeader" style="margin-bottom: 20px; font-size: 1.5rem;">Send a Message</h2>
+        <form id="contactForm" style="margin-top: 10px;">
             <div class="form-group">
                 <label id="suppNameLabel" for="name" class="form-label">Full Name</label>
                 <input type="text" id="name" class="form-input" required>
@@ -65,6 +79,11 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/201017907373" class="floating-wa" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 
 </html>
